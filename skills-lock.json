@@ -1,0 +1,779 @@
+{
+  "version": 1,
+  "skills": {
+    "acul-screen-generator": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/acul-screen-generator/SKILL.md",
+      "computedHash": "407dec9f77bed109aafdf1a5f626758c2d9cfc1e8b472dac64f84add039dbb4d"
+    },
+    "airunway-aks-setup": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/airunway-aks-setup/SKILL.md",
+      "computedHash": "9016a43551692be0396db38fccdf0f0fa549f5194d1c288287f2f720c9e38359"
+    },
+    "algorithmic-art": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/algorithmic-art/SKILL.md",
+      "computedHash": "b2ca295de7f9c86c444f1fa21239e22e0eb7013ced1c652169b9402cc96ff744"
+    },
+    "appinsights-instrumentation": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/appinsights-instrumentation/SKILL.md",
+      "computedHash": "a70f5b6abca44d75b1879bc68aa2926b0355c55cae654d79db97fdbb20c36337"
+    },
+    "auth0-android": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-android/SKILL.md",
+      "computedHash": "acf6d2b24c1c8a182b2a86840af83872259d7df34d7deb45ceb5acf638e49ed2"
+    },
+    "auth0-android-major-migration": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-android-major-migration/SKILL.md",
+      "computedHash": "1f530359da1d139ab3d94c65bd4abf4e470c9a1ae9b810cb2504d03183a60646"
+    },
+    "auth0-angular": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-angular/SKILL.md",
+      "computedHash": "817b084e42d8268acf8737fb67c6a4c3f9a9654dc51df56a9b3fd09762eb3672"
+    },
+    "auth0-aspnetcore-api": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-aspnetcore-api/SKILL.md",
+      "computedHash": "dccb94f9ed82968713288af0a17a1c11e3021176423d5dceb2561263ccba93b8"
+    },
+    "auth0-aspnetcore-authentication": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-aspnetcore-authentication/SKILL.md",
+      "computedHash": "d80c50267890bcbab7c8b279260649d6d86056d0d8edd97aa6a7f78ca00f3d26"
+    },
+    "auth0-branding": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-branding/SKILL.md",
+      "computedHash": "6e3f1f05aeda42fc16c3519dd16627da7a554898b990dd77d865904fe006766e"
+    },
+    "auth0-cli": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-cli/SKILL.md",
+      "computedHash": "d85b7ce522db9a8029d17832495c3772da743951dafe6f75a1f5b4d0f731ba2d"
+    },
+    "auth0-custom-domains": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-custom-domains/SKILL.md",
+      "computedHash": "cacc3fefbb9a6f57f81304411e2e9aeb173bc927b88de5c8d208d922ce8a65c6"
+    },
+    "auth0-dpop": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-dpop/SKILL.md",
+      "computedHash": "319f30ddc9a39d8bb847de76a76f9804eb0854d825c3559bdeba1544a638e2fb"
+    },
+    "auth0-expo": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-expo/SKILL.md",
+      "computedHash": "bdfcd3cd1dd2f1f6703cea733d9341bed88b9e8003a8cb2d58d33810b6104d80"
+    },
+    "auth0-express": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-express/SKILL.md",
+      "computedHash": "c3fc85afe761fb28fe4dc1d21542a23e587dc33ef8cd4b2b82c1413516de8030"
+    },
+    "auth0-fastapi-api": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-fastapi-api/SKILL.md",
+      "computedHash": "2eb5064c45ebbf384f57e6224f326155471fd1dda589a03fcf7d22d9f3e38255"
+    },
+    "auth0-fastify": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-fastify/SKILL.md",
+      "computedHash": "f997c1a6f3a1ce1b01e2f979f89bacef79a0f7e67f3c42de8c8527e901a1028f"
+    },
+    "auth0-fastify-api": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-fastify-api/SKILL.md",
+      "computedHash": "237b8b6d32fe948d75f4d59191d7c147418c9db959987bc1717b8463a421758a"
+    },
+    "auth0-flask": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-flask/SKILL.md",
+      "computedHash": "3d6a0499e01f5a4e768e88bb9be76433ff1cfbc6741db8323c0fccabe2b3ef35"
+    },
+    "auth0-flutter-native": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-flutter-native/SKILL.md",
+      "computedHash": "a890030c9ca53ee96c9b900a2c68f08c288aad12527313aa7f204cf65c91299a"
+    },
+    "auth0-flutter-web": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-flutter-web/SKILL.md",
+      "computedHash": "2ea588c5c477345fc1da74f3868193d4e98832145c700eadb62ec0a32afb0eb4"
+    },
+    "auth0-ionic-angular": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-ionic-angular/SKILL.md",
+      "computedHash": "b217f796fa92bde7d908a992b3d279e05b1b56eeb3a19448bfb98ea92737172b"
+    },
+    "auth0-ionic-react": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-ionic-react/SKILL.md",
+      "computedHash": "2aae130c02444ddb134a86b6525d49093ac0124771e78c96d0010ef1ed976deb"
+    },
+    "auth0-ionic-vue": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-ionic-vue/SKILL.md",
+      "computedHash": "5f0844978e4bf25908d0ec3f000ab5531aa219b1324472187ef9aab685b8fdce"
+    },
+    "auth0-java-mvc-common": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-java-mvc-common/SKILL.md",
+      "computedHash": "ea6b784f872452e01c40e8d79d6fef2b7ac0b488e5081220b14190c1591433a5"
+    },
+    "auth0-laravel": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-laravel/SKILL.md",
+      "computedHash": "074c3f388ec2531bb5f1c587f5d983683e318598cc22142ea41991afe582a8b9"
+    },
+    "auth0-laravel-api": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-laravel-api/SKILL.md",
+      "computedHash": "5b30512c21ff2b9878666c3a567410dccf36ccb1318f644f9980ada51e74dcbb"
+    },
+    "auth0-maui": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-maui/SKILL.md",
+      "computedHash": "52565a3f085c1030d4321810ae4e2bbe3c832301ef51217a330491e6f7983de4"
+    },
+    "auth0-mfa": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-mfa/SKILL.md",
+      "computedHash": "64a27274b40c336f93190959c83bcca10eee439e97894a40c8e08177e05b7098"
+    },
+    "auth0-migration": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-migration/SKILL.md",
+      "computedHash": "b0c79e6d23cba97ff33dae98a578c77fc83d78656ae1a8e2d398d5601daba5a2"
+    },
+    "auth0-net-android": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-net-android/SKILL.md",
+      "computedHash": "42afe5030c2bbe02bb69e42149442a8a1c45775873ace60267d834348f303c8c"
+    },
+    "auth0-net-ios": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-net-ios/SKILL.md",
+      "computedHash": "ea9ca0ca3926909cfe9d13ffaa1bae94904bc8b1519e429b88f30eee6721223d"
+    },
+    "auth0-nextjs": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-nextjs/SKILL.md",
+      "computedHash": "12c73cec290862591c5607402242335f78a6fb9143169615df0fa586e8e3a535"
+    },
+    "auth0-nuxt": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-nuxt/SKILL.md",
+      "computedHash": "bf6a4855b0a0df2be17f14787d1b8a5a0f97663631468d87cb4557bf40c5bd8f"
+    },
+    "auth0-php": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-php/SKILL.md",
+      "computedHash": "0e6130bf0baa67f37d3b01710681217a950bf4df3c21fec61f61ac72663829b2"
+    },
+    "auth0-php-api": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-php-api/SKILL.md",
+      "computedHash": "4d2032c2d80ddd7eb68d64321a35631cfcd27ea811edaa00602201aee6f5db35"
+    },
+    "auth0-quickstart": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-quickstart/SKILL.md",
+      "computedHash": "d962526d529942197646dca7528958e3006c35fb0a8704b92b3113e24c3ec183"
+    },
+    "auth0-react": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-react/SKILL.md",
+      "computedHash": "c2a24853aceeac225b9ad365e1f863c04853b7af0d71ad1473b922aec6ba1be1"
+    },
+    "auth0-react-native": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-react-native/SKILL.md",
+      "computedHash": "e1fbd05bf9316e97162d5b3a00a152315288c47c1114c70fbd710bc0ec580cf9"
+    },
+    "auth0-spa-js": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-spa-js/SKILL.md",
+      "computedHash": "f56e153786e1f118109c1915688727ad0fc080f3d9f1a0c6c59c1549e0d330d7"
+    },
+    "auth0-springboot-api": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-springboot-api/SKILL.md",
+      "computedHash": "0b97a32ae49200b6d20863f63722c1875d9e94e66c6db56d51ffbf07d532161a"
+    },
+    "auth0-swift": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-swift/SKILL.md",
+      "computedHash": "66abc224737ab2bbc6c70bb1c1610c322b363c7d0e73ff49265cef962233872f"
+    },
+    "auth0-swift-major-migration": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-swift-major-migration/SKILL.md",
+      "computedHash": "b6808a5be5af36d9abc1bf7e9ee996abf1f746775a0f302da61b2ab2b13ae184"
+    },
+    "auth0-vue": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-vue/SKILL.md",
+      "computedHash": "04ee2c1bd9b7d06a7a22457e45731f345fc609c43a974fad7765c759875a0e43"
+    },
+    "auth0-winforms": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-winforms/SKILL.md",
+      "computedHash": "2b40e41aefe1c089896e4d9e1bd3f46f06e1433cd3a93157659520e893afa6af"
+    },
+    "auth0-wpf": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/auth0-wpf/SKILL.md",
+      "computedHash": "896095bc0f41a670805b85353a62711c8b156b790bd2391d12893189ba0f7f89"
+    },
+    "aws-ami-builder": {
+      "source": "hashicorp/agent-skills",
+      "sourceType": "github",
+      "skillPath": "packer/builders/skills/aws-ami-builder/SKILL.md",
+      "computedHash": "e62206907650a92c7a138f167cb3539ec4763c76c2bae95b58bae5e86906a7bc"
+    },
+    "azure-ai": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/azure-ai/SKILL.md",
+      "computedHash": "4d6e69d68a30bf05988677616fb213f7c01d2d97e7d2bcec9ffabb1c3c6ada81"
+    },
+    "azure-aigateway": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/azure-aigateway/SKILL.md",
+      "computedHash": "ce4fbc6e2e04fa6fa0b83ee206d87fdf7320c06cc126374c029d7d7c56fa10c8"
+    },
+    "azure-cloud-migrate": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/azure-cloud-migrate/SKILL.md",
+      "computedHash": "353daa0fc4b05b03ed08df298be3a6948279da7d9ff0b37ac368e9c1e37e7ceb"
+    },
+    "azure-compliance": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/azure-compliance/SKILL.md",
+      "computedHash": "9925a074f6cabb23b4316eed17e6b538d1e5c0b47e4f8905dc4a64c691e514f5"
+    },
+    "azure-compute": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/azure-compute/SKILL.md",
+      "computedHash": "e4045828eb5b9c5272d7c740f3111eb84e333c45d9f2431bc60499cd99ce8c05"
+    },
+    "azure-cost": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/azure-cost/SKILL.md",
+      "computedHash": "b0aa9ed07b4adf1b68dcfe37cb6043410291d96e18a4315369f28b1c8722530c"
+    },
+    "azure-deploy": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/azure-deploy/SKILL.md",
+      "computedHash": "12e032e33a0c716377cbdd3c13abea89ef2883f7e5471585b648eb64bb630a18"
+    },
+    "azure-diagnostics": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/azure-diagnostics/SKILL.md",
+      "computedHash": "76ea4baf950b3207883bd60c8fa9b6df8962eb1d52949d88996b2b145a95d239"
+    },
+    "azure-enterprise-infra-planner": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/azure-enterprise-infra-planner/SKILL.md",
+      "computedHash": "b18e104bcbac43ce400ccac4ba3088b5cc03eaa46585088ad50475364c117b90"
+    },
+    "azure-hosted-copilot-sdk": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/azure-hosted-copilot-sdk/SKILL.md",
+      "computedHash": "380fd85ab934ee3e23353fcce320aaf67a4bbef4a4c55e9c93955aef2488cd9c"
+    },
+    "azure-image-builder": {
+      "source": "hashicorp/agent-skills",
+      "sourceType": "github",
+      "skillPath": "packer/builders/skills/azure-image-builder/SKILL.md",
+      "computedHash": "046bbc957a1df2824ff1dae2cc8440fb25672e52145d0f755177eaf76c6ef2f9"
+    },
+    "azure-kubernetes": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/azure-kubernetes/SKILL.md",
+      "computedHash": "9f68c118ffc7f202edb728fdc30398e13e9f9e68389b9439f093386ddb7d265e"
+    },
+    "azure-kusto": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/azure-kusto/SKILL.md",
+      "computedHash": "88a3b6ded86237a0f082917685989fb0a1484e967a7869bbdd944ae994c27556"
+    },
+    "azure-messaging": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/azure-messaging/SKILL.md",
+      "computedHash": "8fa417cf6a4a358b9cef0a533e651323842701c5152112990c28778f12e9f100"
+    },
+    "azure-prepare": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/azure-prepare/SKILL.md",
+      "computedHash": "1db470b933f160516460358f4b9c5fbc28f72dd0e91bdbc3ea052345aeea2e62"
+    },
+    "azure-quotas": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/azure-quotas/SKILL.md",
+      "computedHash": "e63a6a74239d716a33e90633e97f969fb183268207029ed3d35ffb99cb829c83"
+    },
+    "azure-rbac": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/azure-rbac/SKILL.md",
+      "computedHash": "26b19206a52249eb74a15d9eb473319ad387be5254396d9f15aa1da6bdaaea4b"
+    },
+    "azure-reliability": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/azure-reliability/SKILL.md",
+      "computedHash": "720eb76019e2c9167d4670e6916fb3ce48674e83e30de9bdd29d4e53362586d8"
+    },
+    "azure-resource-lookup": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/azure-resource-lookup/SKILL.md",
+      "computedHash": "cace60773f5c5a6aedd039613177be3d136dec5b5b5f2cc6f1708ac5f3c79938"
+    },
+    "azure-resource-visualizer": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/azure-resource-visualizer/SKILL.md",
+      "computedHash": "9d4db5ae1aa433706b1d3fcdbf1617cdda80756992406a7889d6546704bc93ab"
+    },
+    "azure-storage": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/azure-storage/SKILL.md",
+      "computedHash": "7373be6f1fa6c5ccde0d512acbe238be42de2deffb5e26e3123978b91eea1106"
+    },
+    "azure-upgrade": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/azure-upgrade/SKILL.md",
+      "computedHash": "578182734705ebe414427ba46c84a96131a8ec88a3f48c2611ea29156e04194d"
+    },
+    "azure-validate": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/azure-validate/SKILL.md",
+      "computedHash": "67e401745a9cb9b1aae5c813b092ad9dbe4e632f252a4a15750401b5156f5ab5"
+    },
+    "azure-verified-modules": {
+      "source": "hashicorp/agent-skills",
+      "sourceType": "github",
+      "skillPath": "terraform/code-generation/skills/azure-verified-modules/SKILL.md",
+      "computedHash": "271cfe2d6df59264827b1d158f542b15dd3eb25c90739e30fff8080b570299a9"
+    },
+    "brand-guidelines": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/brand-guidelines/SKILL.md",
+      "computedHash": "e48840db6ea772ceecdb68b4e50f8cc77e2534b7580aeaf4a6fe6ee7bd845d7d"
+    },
+    "canvas-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/canvas-design/SKILL.md",
+      "computedHash": "3fa7ea60170023ad8268bf9fd734ea75dd404279a2ef8ddf5abaa1102ad8e5f4"
+    },
+    "claude-api": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/claude-api/SKILL.md",
+      "computedHash": "07fdb33c48693124c497abb5ffcd6403449aa118a04b5aed5cbf9c82ff60c3f3"
+    },
+    "deep-agents-core": {
+      "source": "langchain-ai/langchain-skills",
+      "sourceType": "github",
+      "skillPath": "config/skills/deep-agents-core/SKILL.md",
+      "computedHash": "78899a8217572be9156b0c03f280fea7c250ce29e89a87fc18499766ec67159c"
+    },
+    "deep-agents-memory": {
+      "source": "langchain-ai/langchain-skills",
+      "sourceType": "github",
+      "skillPath": "config/skills/deep-agents-memory/SKILL.md",
+      "computedHash": "54e4fd1e876f5e13bee1b52812a84befe00e8336c19d32766557fcb84c5ecf49"
+    },
+    "deep-agents-orchestration": {
+      "source": "langchain-ai/langchain-skills",
+      "sourceType": "github",
+      "skillPath": "config/skills/deep-agents-orchestration/SKILL.md",
+      "computedHash": "5b039d2c10ef3bd6f6044c70c123060860dc1e1a49c0dc5cc12dde7cd67a3b75"
+    },
+    "doc-coauthoring": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/doc-coauthoring/SKILL.md",
+      "computedHash": "b964e4c3ffe13f66f76dd7919073e60c7aec622cd8a8363bb36323188100cf8e"
+    },
+    "docx": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/docx/SKILL.md",
+      "computedHash": "6962db07127ee540a56e4677f65576d0727668a1d67f7da8bc978f10791c2bfe"
+    },
+    "ecosystem-primer": {
+      "source": "langchain-ai/langchain-skills",
+      "sourceType": "github",
+      "skillPath": "config/skills/ecosystem-primer/SKILL.md",
+      "computedHash": "792007c035568732166705ab3b2e01b29fff39f4630e974226e7e2ca5fea4352"
+    },
+    "entra-agent-id": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/entra-agent-id/SKILL.md",
+      "computedHash": "db321d866f2d9418b17f7274e766368e9a0e592717dff74e9cccec428ee7a5cf"
+    },
+    "entra-app-registration": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/entra-app-registration/SKILL.md",
+      "computedHash": "793e83d36c7575710c5e29c84dc87367d989f0a0d0ffad2b1887e306066d97cc"
+    },
+    "express-oauth2-jwt-bearer": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/express-oauth2-jwt-bearer/SKILL.md",
+      "computedHash": "04a235b06a31999bd79ee41e7b61629fb5c9ad2ef0891fae2422b4501392d0ce"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "4eabc66183767153e404b39d1b839b1c37f2d82d86f0a0d7e880a579d8d62336"
+    },
+    "go-jwt-middleware": {
+      "source": "auth0/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/auth0/skills/go-jwt-middleware/SKILL.md",
+      "computedHash": "66fa0cce9ca51bb2818166f031dbbef3a214881b33c2996470e9b591a47f74bd"
+    },
+    "internal-comms": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/internal-comms/SKILL.md",
+      "computedHash": "0bdc8867452b7ab9ef6167f6b0db2025ce5fb03773d3f85efcef2dfeb9d4976d"
+    },
+    "iris-development": {
+      "source": "redis/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/iris-development/SKILL.md",
+      "computedHash": "677663bc77ea89c1ba7de7ced05a2d0f16bbe7b5e75efa47a10a40091eeb039d"
+    },
+    "langchain-dependencies": {
+      "source": "langchain-ai/langchain-skills",
+      "sourceType": "github",
+      "skillPath": "config/skills/langchain-dependencies/SKILL.md",
+      "computedHash": "d11337493fa4828c12d2d1793fbdf3bb0d5ae67763a03e98b0f1aa3d0ff6825b"
+    },
+    "langchain-fundamentals": {
+      "source": "langchain-ai/langchain-skills",
+      "sourceType": "github",
+      "skillPath": "config/skills/langchain-fundamentals/SKILL.md",
+      "computedHash": "5a1ded1b185ed95aab2b795f6134ce1ea9c19dddc5d5c8f291b31c0db4f0e379"
+    },
+    "langchain-middleware": {
+      "source": "langchain-ai/langchain-skills",
+      "sourceType": "github",
+      "skillPath": "config/skills/langchain-middleware/SKILL.md",
+      "computedHash": "f8b6897ba1f027d56ff9fffa72d4d27d8e048232fe1e1c13e219df98969d55b0"
+    },
+    "langchain-rag": {
+      "source": "langchain-ai/langchain-skills",
+      "sourceType": "github",
+      "skillPath": "config/skills/langchain-rag/SKILL.md",
+      "computedHash": "53fa807b2094c4ee9136ff23a9330321c1a22959870e4a1f7bd53b753b623f94"
+    },
+    "langgraph-cli": {
+      "source": "langchain-ai/langchain-skills",
+      "sourceType": "github",
+      "skillPath": "config/skills/langgraph-cli/SKILL.md",
+      "computedHash": "dec48033a9a80c8d8826d0d4303dfc339a0a9145f3266035663104357b2d9c8f"
+    },
+    "langgraph-fundamentals": {
+      "source": "langchain-ai/langchain-skills",
+      "sourceType": "github",
+      "skillPath": "config/skills/langgraph-fundamentals/SKILL.md",
+      "computedHash": "790dd42d79190a6db6a7a82ac9b03fa371402a47d91ff88c1e2731b1ceff1d29"
+    },
+    "langgraph-human-in-the-loop": {
+      "source": "langchain-ai/langchain-skills",
+      "sourceType": "github",
+      "skillPath": "config/skills/langgraph-human-in-the-loop/SKILL.md",
+      "computedHash": "283821ddcbdefb404d5e9c95149364c0962857a6f1e90db33ee5a0062500a88a"
+    },
+    "langgraph-persistence": {
+      "source": "langchain-ai/langchain-skills",
+      "sourceType": "github",
+      "skillPath": "config/skills/langgraph-persistence/SKILL.md",
+      "computedHash": "0e14611b0310a7a30e9977ba99b00a11b7ea63ebdd7b0c490d03040349ead0ed"
+    },
+    "managed-deep-agents": {
+      "source": "langchain-ai/langchain-skills",
+      "sourceType": "github",
+      "skillPath": "config/skills/managed-deep-agents/SKILL.md",
+      "computedHash": "e731af48cd4293b2d3606a1b066a9ca0aaca1c421e8190f5668caf95a65f38e0"
+    },
+    "mcp-builder": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/mcp-builder/SKILL.md",
+      "computedHash": "826e46adf81e1372282e205c34e1a2ee876e72148007726e4a2512599d2fef7b"
+    },
+    "microsoft-foundry": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/microsoft-foundry/SKILL.md",
+      "computedHash": "8f431c22d1ffe7e58fb1fdb29b2b3d9ce769f4d4ca2e09fef2859f1060e17d74"
+    },
+    "new-terraform-provider": {
+      "source": "hashicorp/agent-skills",
+      "sourceType": "github",
+      "skillPath": "terraform/provider-development/skills/new-terraform-provider/SKILL.md",
+      "computedHash": "2f12647edea2705451301a24a864d71af4aa7758e8a8e977a1f95f83a297dc4a"
+    },
+    "pdf": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/pdf/SKILL.md",
+      "computedHash": "cfbc539377088ca7e44a813b30c306327385bbd973cd7a721e1743f60837dd62"
+    },
+    "pptx": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/pptx/SKILL.md",
+      "computedHash": "6b8b859d26f93aa059c9870d1ab76b44ab69e3d6757ce4a03cc94cb760888073"
+    },
+    "provider-actions": {
+      "source": "hashicorp/agent-skills",
+      "sourceType": "github",
+      "skillPath": "terraform/provider-development/skills/provider-actions/SKILL.md",
+      "computedHash": "e3852e6583ab4c2199a26793583a3463ce80d31b4b972f7855585c8885d0c0e4"
+    },
+    "provider-docs": {
+      "source": "hashicorp/agent-skills",
+      "sourceType": "github",
+      "skillPath": "terraform/provider-development/skills/provider-docs/SKILL.md",
+      "computedHash": "98f26d2e497e94913fe00b9544c6b5cb81325ead615aaf3ddf87d272ff882e43"
+    },
+    "provider-resources": {
+      "source": "hashicorp/agent-skills",
+      "sourceType": "github",
+      "skillPath": "terraform/provider-development/skills/provider-resources/SKILL.md",
+      "computedHash": "97edcbb115a59d93da5ec28cb445d883307c66143b6fbc1f6f61bd4b2cfd7def"
+    },
+    "provider-test-patterns": {
+      "source": "hashicorp/agent-skills",
+      "sourceType": "github",
+      "skillPath": "terraform/provider-development/skills/provider-test-patterns/SKILL.md",
+      "computedHash": "5357774c5d08fa1666737d49ffb68f0c86689be3b3620be5779fd882b159c09c"
+    },
+    "push-to-registry": {
+      "source": "hashicorp/agent-skills",
+      "sourceType": "github",
+      "skillPath": "packer/hcp/skills/push-to-registry/SKILL.md",
+      "computedHash": "11eaa6387c0066d992096f630221c5f51d3cfdcd045797658b494abe60eac9ce"
+    },
+    "python-appservice-deploy": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "skillPath": "skills/python-appservice-deploy/SKILL.md",
+      "computedHash": "b1f2f2bd3850d83fc5034d88032612560dab9c40deaecc7662013437f5705a4d"
+    },
+    "redis-clustering": {
+      "source": "redis/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/redis-clustering/SKILL.md",
+      "computedHash": "089487d9a5eecc17c00880bf6a06dc1bf9f6cdb44b86235788667fcd74ea3e9f"
+    },
+    "redis-connections": {
+      "source": "redis/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/redis-connections/SKILL.md",
+      "computedHash": "3755d60acb0c484a44c4bef547340cc889e7f803f5dcedcd3bf767878b12c428"
+    },
+    "redis-core": {
+      "source": "redis/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/redis-core/SKILL.md",
+      "computedHash": "5b342de2555699d1785335711883711ff6ef7e213a1ea57d6bf693184a5c8683"
+    },
+    "redis-observability": {
+      "source": "redis/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/redis-observability/SKILL.md",
+      "computedHash": "29a9044c3e72ab9ea7145efe917584e3c2f3739b64d8a68e7c77fc6f4a70b1cb"
+    },
+    "redis-search": {
+      "source": "redis/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/redis-search/SKILL.md",
+      "computedHash": "9a9667992ba824f0bd76aac6085ee2e46783161802a913d19a84a76f00122096"
+    },
+    "redis-security": {
+      "source": "redis/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/redis-security/SKILL.md",
+      "computedHash": "8ed04a12265b088c75a6d415db576e051b920bd2f8dd37357636b0144b3118a6"
+    },
+    "redis-semantic-cache": {
+      "source": "redis/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/redis-semantic-cache/SKILL.md",
+      "computedHash": "2096d785b796e7bf7ad8902f9798133aa7f40c21435c5e6d5beeb05c3de29145"
+    },
+    "refactor-module": {
+      "source": "hashicorp/agent-skills",
+      "sourceType": "github",
+      "skillPath": "terraform/module-generation/skills/refactor-module/SKILL.md",
+      "computedHash": "f506f95f84ff344a3e522f2e58069b632a5b3539d978f00c935ee8bab25b03f0"
+    },
+    "run-acceptance-tests": {
+      "source": "hashicorp/agent-skills",
+      "sourceType": "github",
+      "skillPath": "terraform/provider-development/skills/run-acceptance-tests/SKILL.md",
+      "computedHash": "08e3615c03a799d81a910b04f04e6c54887411603f8e8c309a60f65681425a0c"
+    },
+    "skill-creator": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/skill-creator/SKILL.md",
+      "computedHash": "5ea13a6d9f0d4bb694405d79acd00cadec0d21bb138c4dd10fcf3c500cb835c2"
+    },
+    "slack-gif-creator": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/slack-gif-creator/SKILL.md",
+      "computedHash": "fab4fcfcaed371071069d61a3ab94dff15d10d36403ff269d147ea986cd98083"
+    },
+    "swarm": {
+      "source": "langchain-ai/langchain-skills",
+      "sourceType": "github",
+      "skillPath": "config/skills/swarm/SKILL.md",
+      "computedHash": "4091bd7cf88d408a0724d4cc2be2c0c0fdf6fbe4bd3e700c4cabed58900823bb"
+    },
+    "template-skill": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "template/SKILL.md",
+      "computedHash": "38c88f722b574a922311d334a70c2008a2a5b896f06eaa75516d716e5725b26f"
+    },
+    "terraform-search-import": {
+      "source": "hashicorp/agent-skills",
+      "sourceType": "github",
+      "skillPath": "terraform/code-generation/skills/terraform-search-import/SKILL.md",
+      "computedHash": "46ecb62cab3224263a6d8fb5a264a65bdb3085c762cc91eab1797d650bae6ce8"
+    },
+    "terraform-stacks": {
+      "source": "hashicorp/agent-skills",
+      "sourceType": "github",
+      "skillPath": "terraform/module-generation/skills/terraform-stacks/SKILL.md",
+      "computedHash": "c90c845f0d9b08341d6c85d6957f105e8973582870f4a6601f5366dc57d8171a"
+    },
+    "terraform-style-guide": {
+      "source": "hashicorp/agent-skills",
+      "sourceType": "github",
+      "skillPath": "terraform/code-generation/skills/terraform-style-guide/SKILL.md",
+      "computedHash": "fd301fe5bfb41764acac67c25244cc5650b5dd0a5d8d037414449a2d3adecbbf"
+    },
+    "terraform-test": {
+      "source": "hashicorp/agent-skills",
+      "sourceType": "github",
+      "skillPath": "terraform/code-generation/skills/terraform-test/SKILL.md",
+      "computedHash": "c446a090ac98bea46704c16003761a030e6aa56a27b0e95d6914fbdb7c1d2a23"
+    },
+    "theme-factory": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/theme-factory/SKILL.md",
+      "computedHash": "598ddfa9784ae2a8c55be5dbb047b98564d875dea6f4669168a87ae1ea1a4ed3"
+    },
+    "web-artifacts-builder": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/web-artifacts-builder/SKILL.md",
+      "computedHash": "d52d422ead3fa26859a6af129609841a8536b230a2d649f86e61771d063e05e2"
+    },
+    "webapp-testing": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/webapp-testing/SKILL.md",
+      "computedHash": "ad5b1fc52807e9afa4635e59218a026b164dc58b6c3f41b0f7c644dcd6ccf572"
+    },
+    "windows-builder": {
+      "source": "hashicorp/agent-skills",
+      "sourceType": "github",
+      "skillPath": "packer/builders/skills/windows-builder/SKILL.md",
+      "computedHash": "19463b4e2fe766c72534889931e5be1d0867727f8ab38cce963fb156f7c25760"
+    },
+    "xlsx": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/xlsx/SKILL.md",
+      "computedHash": "efd0c8011cf0677d8075cf93867ecec804f9a8754a777e1d2fdb46197e9c247f"
+    }
+  }
+}

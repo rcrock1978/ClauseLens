@@ -1,0 +1,683 @@
+openapi: "3.1.0"
+info:
+  title: ClauseLens API
+  version: "1.0.0"
+  description: API for AI-powered contract review
+
+servers:
+  - url: /api/v1
+
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token (401)
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error: { type: string }
+              code: { type: string }
+    Forbidden:
+      description: Authenticated but role/permission denied (403)
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error: { type: string }
+              code: { type: string }
+    TooManyRequests:
+      description: Per-tenant rate limit exceeded (429)
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error: { type: string }
+              retryAfter: { type: integer, format: "int32" }
+
+paths:
+  /contracts:
+    post:
+      operationId: uploadContract
+      summary: Upload a contract document
+      tags: [Contracts]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: PDF or DOCX file (max 25 MB)
+      responses:
+        "201":
+          description: Contract uploaded and queued for analysis
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Contract"
+        "400":
+          description: Invalid file format or size exceeded
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "413":
+          description: File too large
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+
+  /contracts/{contractId}:
+    get:
+      operationId: getContract
+      summary: Get contract details with clause list
+      tags: [Contracts]
+      parameters:
+        - name: contractId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Contract details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Contract"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Contract not found
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+
+  /contracts/{contractId}/risks:
+    get:
+      operationId: getContractRisks
+      summary: Get risk flags for a contract
+      tags: [Analysis]
+      parameters:
+        - name: contractId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Risk flags grouped by clause
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/RiskFlag"
+
+  /contracts/{contractId}/redlines:
+    get:
+      operationId: getRedlines
+      summary: Get suggested redlines for a contract
+      tags: [Analysis]
+      parameters:
+        - name: contractId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Redlines grouped by clause
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Redline"
+
+  /contracts/{contractId}/obligations:
+    get:
+      operationId: getObligations
+      summary: Get extracted obligations for a contract
+      tags: [Analysis]
+      parameters:
+        - name: contractId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Extracted obligations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Obligation"
+
+  /contracts/{contractId}/review:
+    post:
+      operationId: assignReview
+      summary: Assign a contract for review
+      tags: [Review]
+      parameters:
+        - name: contractId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [primaryReviewerId]
+              properties:
+                primaryReviewerId:
+                  type: string
+                  format: uuid
+                  description: The decider (required)
+                secondaryReviewerIds:
+                  type: array
+                  maxItems: 2
+                  items:
+                    type: string
+                    format: uuid
+                  description: Optional 0-2 comment-only reviewers
+      responses:
+        "200":
+          description: Review task created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReviewTask"
+
+  /contracts/{contractId}/review/reassign:
+    post:
+      operationId: reassignReview
+      summary: Reassign the primary reviewer after the 7-business-day SLA
+      tags: [Review]
+      parameters:
+        - name: contractId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [newPrimaryReviewerId, reason]
+              properties:
+                newPrimaryReviewerId:
+                  type: string
+                  format: uuid
+                reason:
+                  type: string
+                  minLength: 1
+                  description: Required - recorded in audit log
+      responses:
+        "200":
+          description: Reassignment recorded
+
+    get:
+      operationId: getReviewStatus
+      summary: Get review status for a contract
+      tags: [Review]
+      parameters:
+        - name: contractId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Review status with clause decisions
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReviewTask"
+
+  /contracts/{contractId}/clauses/{clauseId}/decision:
+    put:
+      operationId: decideClause
+      summary: Record a decision on a specific clause
+      tags: [Review]
+      parameters:
+        - name: contractId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: clauseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                decision:
+                  type: string
+                  enum: [approved, rejected_with_comment, needs_discussion]
+                comment:
+                  type: string
+      responses:
+        "200":
+          description: Decision recorded
+
+  /playbooks:
+    get:
+      operationId: listPlaybooks
+      summary: List playbooks for the tenant
+      tags: [Playbooks]
+      responses:
+        "200":
+          description: Playbook list
+
+    post:
+      operationId: importPlaybookTemplates
+      summary: Import standard clause templates into a playbook
+      tags: [Playbooks]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                templateIds:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        "201":
+          description: Playbook created from templates
+
+  /audit-log:
+    get:
+      operationId: getAuditLog
+      summary: Get audit log entries
+      tags: [Audit]
+      parameters:
+        - name: contractId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: actionType
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Audit log entries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AuditEntry"
+
+  /tenants/signup:
+    post:
+      operationId: signupTenant
+      summary: Self-service tenant signup — creates tenant and first Admin
+      tags: [Tenants]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [tenantName, adminEmail, password]
+              properties:
+                tenantName:
+                  type: string
+                adminEmail:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+      responses:
+        "201":
+          description: Tenant created, verification email sent
+        "409":
+          description: Email already in use
+
+  /tenants/{tenantId}/offboard:
+    post:
+      operationId: offboardTenant
+      summary: Schedule tenant offboarding (30-day soft delete then hard delete)
+      tags: [Tenants]
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "202":
+          description: Offboarding scheduled
+
+  /gdpr/erasure:
+    post:
+      operationId: requestErasure
+      summary: GDPR right-to-erasure request — fulfilled within 30 days
+      tags: [GDPR]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [subjectEmail, scope]
+              properties:
+                subjectEmail:
+                  type: string
+                  format: email
+                scope:
+                  type: string
+                  enum: [user, contract, audit_entry]
+      responses:
+        "202":
+          description: Erasure request accepted; completion within 30 days
+
+  /auth/verify-email:
+    post:
+      operationId: verifyEmail
+      summary: Confirm email verification token (first-login gate)
+      tags: [Auth]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [token]
+              properties:
+                token:
+                  type: string
+      responses:
+        "200":
+          description: Email verified, user becomes Active
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+
+  /auth/login:
+    post:
+      operationId: login
+      summary: Exchange email + password for a JWT access token
+      tags: [Auth]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: { type: string, format: email }
+                password: { type: string, format: password }
+      responses:
+        "200":
+          description: Authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [accessToken, userId, tenantId, role]
+                properties:
+                  accessToken: { type: string }
+                  userId: { type: string, format: uuid }
+                  tenantId: { type: string, format: uuid }
+                  role: { type: string, enum: [admin, contract_owner, reviewer] }
+        "401":
+          description: Invalid credentials
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+
+  /contracts/{contractId}/review/comments:
+    post:
+      operationId: addSecondaryComment
+      summary: Secondary reviewer posts a non-blocking comment
+      tags: [Review]
+      parameters:
+        - name: contractId
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [clauseId, comment]
+              properties:
+                clauseId: { type: string, format: uuid }
+                comment: { type: string, minLength: 1 }
+      responses:
+        "201":
+          description: Comment recorded
+        "403":
+          description: Caller is not in the secondary reviewer list
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+
+  /users/invite:
+    post:
+      operationId: inviteUser
+      summary: Admin invites a new user into the tenant
+      tags: [Users]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, role]
+              properties:
+                email:
+                  type: string
+                  format: email
+                role:
+                  type: string
+                  enum: [admin, contract_owner, reviewer]
+      responses:
+        "201":
+          description: Invitation sent; user created in PendingInvite state
+
+components:
+  schemas:
+    Contract:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        fileName:
+          type: string
+        status:
+          type: string
+          enum: [uploaded, analyzing, ready_for_review, in_review, reviewed]
+        createdAt:
+          type: string
+          format: date-time
+        clauses:
+          type: array
+          items:
+            $ref: "#/components/schemas/Clause"
+
+    Clause:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        index:
+          type: integer
+        heading:
+          type: string
+        text:
+          type: string
+
+    RiskFlag:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        clauseId:
+          type: string
+          format: uuid
+        ruleId:
+          type: string
+          format: uuid
+        severity:
+          type: string
+          enum: [low, medium, high, critical]
+        confidence:
+          type: string
+          enum: [high, medium, low]
+        rationale:
+          type: string
+
+    Redline:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        riskFlagId:
+          type: string
+          format: uuid
+        suggestedText:
+          type: string
+        rationale:
+          type: string
+        confidence:
+          type: string
+          enum: [high, medium, low]
+        status:
+          type: string
+          enum: [pending, accepted, rejected]
+
+    Obligation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        clauseId:
+          type: string
+          format: uuid
+        description:
+          type: string
+        responsibleParty:
+          type: string
+        dueDate:
+          type: string
+          format: date
+        triggerCondition:
+          type: string
+
+    ReviewTask:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        contractId:
+          type: string
+          format: uuid
+        primaryReviewerId:
+          type: string
+          format: uuid
+        secondaryReviewerIds:
+          type: array
+          maxItems: 2
+          items:
+            type: string
+            format: uuid
+        assignedAt:
+          type: string
+          format: date-time
+        slaDeadline:
+          type: string
+          format: date-time
+          description: assignedAt + 7 business days
+        slaNudgedAt:
+          type: string
+          format: date-time
+          nullable: true
+        status:
+          type: string
+          enum: [in_progress, submitted, reassigned]
+        reassignedFromId:
+          type: string
+          format: uuid
+          nullable: true
+        reassignmentReason:
+          type: string
+          nullable: true
+        clauseDecisions:
+          type: array
+          items:
+            $ref: "#/components/schemas/ClauseDecision"
+
+    ClauseDecision:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        clauseId:
+          type: string
+          format: uuid
+        decision:
+          type: string
+          enum: [approved, rejected_with_comment, needs_discussion]
+        comment:
+          type: string
+
+    AuditEntry:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        contractId:
+          type: string
+          format: uuid
+        actorId:
+          type: string
+          format: uuid
+        actionType:
+          type: string
+        createdAt:
+          type: string
+          format: date-time

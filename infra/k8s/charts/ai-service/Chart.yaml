@@ -1,0 +1,16 @@
+apiVersion: v2
+name: clauselens-ai-service
+description: ClauseLens Python AI service
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+
+values:
+  image:
+    repository: clauselens/ai-service
+    tag: latest
+  service:
+    port: 8000
+resources:
+  requests: { cpu: 250m, memory: 512Mi }
+  limits:   { cpu: 2000m, memory: 2Gi }

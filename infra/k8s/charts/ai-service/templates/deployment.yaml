@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "clauselens-ai-service.fullname" . }}
+spec:
+  replicas: 2
+  selector:
+    matchLabels: {{ include "clauselens-ai-service.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels: {{ include "clauselens-ai-service.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: ai
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports: [{ containerPort: {{ .Values.service.port }} }]
+          resources: {{- toYaml .Values.resources | nindent 12 }}
+          securityContext:
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: [ "ALL" ] }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "clauselens-ai-service.fullname" . }}
+spec:
+  type: ClusterIP
+  selector: {{ include "clauselens-ai-service.selectorLabels" . | nindent 4 }}
+  ports:
+    - name: http
+      port: 80
+      targetPort: {{ .Values.service.port }}

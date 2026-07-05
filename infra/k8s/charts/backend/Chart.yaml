@@ -1,0 +1,30 @@
+apiVersion: v2
+name: clauselens-backend
+description: ClauseLens .NET 10 backend
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+
+values:
+  image:
+    repository: clauselens/backend
+    tag: latest
+  service:
+    port: 8080
+  env:
+    ASPNETCORE_ENVIRONMENT: production
+    ConnectionStrings__Sql: ""
+    ConnectionStrings__Redis: ""
+    AiService__BaseUrl: http://ai-service:8000
+    Jwt__Secret: ""
+  probes:
+    liveness: /health
+    readiness: /health
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 512Mi
+  limits:
+    cpu: 1000m
+    memory: 1Gi

@@ -1,0 +1,80 @@
+# ClauseLens local development stack
+# Usage: docker compose up --build
+# See quickstart.md for the runbook.
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: clauselens-sql
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "DevPassword!23"
+    ports:
+      - "1433:1433"
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools18/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "DevPassword!23", "-C", "-Q", "SELECT 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: clauselens-redis
+    ports:
+      - "6379:6379"
+
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite:latest
+    container_name: clauselens-azurite
+    ports:
+      - "10000:10000"
+      - "10001:10001"
+      - "10002:10002"
+
+  backend:
+    build:
+      context: .
+      dockerfile: infra/docker/backend.Dockerfile
+    container_name: clauselens-backend
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      ai-service:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Sql: "Server=sqlserver,1433;Database=ClauseLens;User Id=sa;Password=DevPassword!23;TrustServerCertificate=true"
+      ConnectionStrings__Redis: "redis:6379"
+      AiService__BaseUrl: "http://ai-service:8000"
+      Jwt__Secret: "${JWT_SECRET:-dev-only-secret-32-chars-min-len-aaaa}"
+    volumes:
+      - backend-blobs:/app/blobs
+    ports:
+      - "5000:8080"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: infra/docker/frontend.Dockerfile
+    container_name: clauselens-frontend
+    depends_on:
+      - backend
+    ports:
+      - "4200:80"
+
+  ai-service:
+    build:
+      context: .
+      dockerfile: infra/docker/ai-service.Dockerfile
+    container_name: clauselens-ai
+    environment:
+      OPENAI_API_KEY: "${OPENAI_API_KEY:-sk-dev-placeholder}"
+      AZURE_AI_SEARCH_ENDPOINT: "${AZURE_AI_SEARCH_ENDPOINT:-https://dev-search.search.windows.net}"
+      AZURE_AI_SEARCH_KEY: "${AZURE_AI_SEARCH_KEY:-dev-key}"
+    ports:
+      - "8000:8000"
+
+volumes:
+  backend-blobs:

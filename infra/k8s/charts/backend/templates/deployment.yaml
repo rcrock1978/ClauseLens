@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "clauselens-backend.fullname" . }}
+  labels: {{ include "clauselens-backend.labels" . | nindent 4 }}
+spec:
+  replicas: 2
+  selector:
+    matchLabels: {{ include "clauselens-backend.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels: {{ include "clauselens-backend.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: backend
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+          envFrom:
+            - secretRef:
+                name: {{ include "clauselens-backend.fullname" . }}-secrets
+          livenessProbe:
+            httpGet: { path: {{ .Values.probes.liveness }}, port: http }
+          readinessProbe:
+            httpGet: { path: {{ .Values.probes.readiness }}, port: http }
+          resources: {{- toYaml .Values.resources | nindent 12 }}
+          securityContext:
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: [ "ALL" ]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "clauselens-backend.fullname" . }}
+spec:
+  type: ClusterIP
+  selector: {{ include "clauselens-backend.selectorLabels" . | nindent 4 }}
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

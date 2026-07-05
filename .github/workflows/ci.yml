@@ -1,0 +1,112 @@
+name: ci
+
+on:
+  push:
+    branches: [main, "001-*"]
+  pull_request:
+    branches: [main]
+
+env:
+  DOTNET_VERSION: "10.0.x"
+  PYTHON_VERSION: "3.12"
+  NODE_VERSION: "22"
+
+jobs:
+  backend:
+    name: Backend (.NET 10)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+      - run: dotnet restore backend/ClauseLens.sln
+      - run: dotnet build backend/ClauseLens.sln --no-restore --configuration Release
+      - run: dotnet test backend/ClauseLens.sln --no-build --configuration Release --logger trx --collect-coverage
+      - run: dotnet format backend/ --verify-no-changes --severity warn
+
+  frontend:
+    name: Frontend (Angular)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci --prefix frontend
+      - run: npm run lint --prefix frontend
+      - run: npm run build --prefix frontend -- --configuration=production
+      - run: npm test --prefix frontend -- --watch=false --browsers=ChromeHeadless
+
+  ai-service:
+    name: AI Service (Python 3.12)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: ai-service/pyproject.toml
+      - run: pip install -e "ai-service/[dev]"
+      - run: ruff check ai-service
+      - run: mypy ai-service
+      - run: pytest ai-service --cov=ai-service --cov-report=xml
+
+  eval-gates:
+    name: AI Eval Gates
+    needs: [ai-service]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - run: pip install -e "ai-service/[dev]"
+      - name: Run AI eval thresholds (recall, faithfulness, confidence calibration)
+        run: pytest ai-service/tests/test_eval_gates.py --maxfail=1
+      - name: Verify AI observability metrics endpoint reachable
+        run: python ai-service/scripts/verify_metrics_endpoint.py
+
+  sast-sca-secrets:
+    name: SAST / SCA / Secret Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Trivy filesystem scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: fs
+          scan-ref: .
+          severity: HIGH,CRITICAL
+      - name: Gitleaks secret scan
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  tenant-isolation:
+    name: Tenant Isolation Tests
+    needs: [backend]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+      - run: dotnet test backend/tests/ClauseLens.Integration.Tests --filter Category=TenantIsolation
+
+  perf-budget:
+    name: Performance Budget
+    needs: [backend]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+      - name: API p95 < 200ms reads, < 400ms writes
+        run: dotnet test backend/tests/ClauseLens.Performance.Tests --filter Category=PerfBudget
+      - name: 50-page PDF segment in < 2 min
+        run: dotnet test backend/tests/ClauseLens.Performance.Tests --filter "FullyQualifiedName~UploadTimingTests"
